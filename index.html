@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A simple local feedback management system." />
+    <title>Feedback Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="login-screen" class="login-screen" data-testid="login-screen">
+        <div class="login-intro">
+          <p class="eyebrow">FEEDBACK / 01</p>
+          <h1>Make room for<br /><em>better ideas.</em></h1>
+          <p class="intro-copy">A focused space for collecting the small observations that shape great work.</p>
+          <div class="signal-line" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <form id="login-form" class="login-card" data-testid="login-form">
+          <div class="card-heading">
+            <span class="number-label">01 / ACCESS</span>
+            <h2>Welcome back</h2>
+            <p>Use the demo details to open your workspace.</p>
+          </div>
+          <label for="email">Email address</label>
+          <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required data-testid="login-email-input" />
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter password" autocomplete="current-password" required data-testid="login-password-input" />
+          <p id="login-error" class="form-error" role="alert" hidden data-testid="login-error"></p>
+          <button class="button button-dark button-full" type="submit" data-testid="login-submit-button">Open workspace <span>↗</span></button>
+          <p class="demo-hint">Demo: <strong>demo@feedbackdesk.com</strong> / <strong>demo123</strong></p>
+        </form>
+      </section>
+
+      <section id="workspace" class="workspace" hidden data-testid="workspace-screen">
+        <header class="topbar">
+          <a class="brand" href="#" data-testid="brand-link"><span class="brand-mark">+</span> Feedback Desk</a>
+          <div class="topbar-meta">
+            <span class="live-dot"><i></i> Local workspace</span>
+            <button id="logout-button" class="text-button" type="button" data-testid="logout-button">Log out <span>↗</span></button>
+          </div>
+        </header>
+
+        <div class="workspace-content">
+          <div class="page-intro">
+            <div>
+              <p class="eyebrow">YOUR INBOX / <span id="today-label" data-testid="today-label"></span></p>
+              <h1>What’s on your mind?</h1>
+              <p class="intro-copy">Capture feedback while it is fresh. Everything stays in this browser.</p>
+            </div>
+            <div class="summary-block" aria-label="Feedback summary">
+              <span class="summary-number" id="feedback-count" data-testid="feedback-count">0</span>
+              <span class="summary-label">feedback items</span>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <form id="feedback-form" class="feedback-form" data-testid="feedback-form">
+              <div class="section-label"><span>02</span> SHARE FEEDBACK</div>
+              <label for="feedback-title">A short title</label>
+              <input id="feedback-title" type="text" maxlength="80" placeholder="e.g. Checkout feels confusing" required data-testid="feedback-title-input" />
+              <label for="feedback-message">Tell us more</label>
+              <textarea id="feedback-message" rows="6" maxlength="500" placeholder="What happened? What would make it better?" required data-testid="feedback-message-input"></textarea>
+              <div class="form-footer">
+                <span id="character-count" class="character-count" data-testid="character-count">0 / 500</span>
+                <button class="button button-accent" type="submit" data-testid="feedback-submit-button">Send feedback <span>→</span></button>
+              </div>
+            </form>
+
+            <section class="feedback-list-section" aria-labelledby="feedback-heading">
+              <div class="section-label"><span>03</span> RECENT NOTES</div>
+              <div class="list-heading">
+                <h2 id="feedback-heading">Your feedback</h2>
+                <button id="clear-button" class="text-button muted" type="button" hidden data-testid="clear-feedback-button">Clear all</button>
+              </div>
+              <div id="feedback-list" class="feedback-list" data-testid="feedback-list"></div>
+              <div id="empty-state" class="empty-state" data-testid="empty-feedback-state">
+                <div class="empty-icon">◎</div>
+                <h3>No notes yet</h3>
+                <p>Your first piece of feedback will appear here.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div id="toast" class="toast" role="status" hidden data-testid="toast-message"></div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
